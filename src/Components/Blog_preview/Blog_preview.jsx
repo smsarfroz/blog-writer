@@ -8,7 +8,7 @@ function Blog_preview({post}) {
                 <h2 className={styles.postTitle}>{post.title}</h2>
                 <p className={styles.postContent}>{post.content}</p>
                 <div className={styles.postDetail}>
-                    <p>By: {post.author.name}</p>
+                    <p>By: {post.author.username}</p>
                     <p>Created: {post.createdAt}</p>
                 </div>
             </div>

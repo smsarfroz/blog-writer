@@ -13,3 +13,7 @@
     flex-direction: column;
     gap: 1.6vw;
 }
+
+.publishButton {
+    cursor: pointer;
+}

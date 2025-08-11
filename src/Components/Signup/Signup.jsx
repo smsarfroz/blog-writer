@@ -1,5 +1,4 @@
 import styles from './Signup.module.css';
-import { useState } from 'react';
 
 
 const Signup = () => {
@@ -13,7 +12,7 @@ const Signup = () => {
             data[key] = value;
         });
 
-        console.log(data);
+        // console.log(data);
 
         fetch("http://localhost:3000/signup", {
             mode: 'cors',

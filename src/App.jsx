@@ -23,12 +23,13 @@ const usePosts = () => {
   }, []);
   return { posts, error, loading };
 };
-
 function App() {
   const { posts, error, loading } = usePosts();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
+  // console.log('loggedIn: ', loggedIn);
   
   return (
     <>
@@ -43,21 +44,30 @@ function App() {
           <span><a href="https://github.com/smsarfroz/Blog-API">github</a></span>
         </div>
         <div className="userState">
-          <span>
-            <Link to="/signup" className="link">
-              Sign up
-            </Link>
-          </span>
-          <span>
-            <Link to="/login" className="link">
-              Login
-            </Link>
-          </span>
+          {
+            loggedIn ? (
+              <>
+                <span>
+                  <Link to="/signup" className="link">
+                    Sign up
+                  </Link>
+                </span>
+                <span>
+                  <Link to="/login" className="link">
+                    Login
+                  </Link>
+                </span>
+              </>
+            ) : (
+              <h2>Welcome</h2>
+            )
+          }
+          
         </div>
       </nav>
 
       <div className="commonBackground">
-        <blogContext.Provider value={{posts}}>
+        <blogContext.Provider value={{posts, loggedIn, setLoggedIn}}>
           <Outlet />
         </blogContext.Provider>
       </div>

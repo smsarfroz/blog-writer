@@ -1,8 +1,10 @@
 import styles from './Signup.module.css';
-
+import { useContext } from 'react';
+import { blogContext } from '../../blogContext';
 
 const Signup = () => {
-    
+    let { authorId } = useContext(blogContext);
+
     function handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -26,8 +28,10 @@ const Signup = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            return response.json();
         })
-        .then(() => {
+        .then((user) => {
+            authorId = user.id;
             console.log('user created successfully:');
         })
         .catch(error => {

@@ -4,6 +4,7 @@ import Login from "./Components/Login/Login.jsx";
 import ErrorPage from "./ErrorPage";
 import Blog from "./Components/Blog/Blog.jsx";
 import Home from "./Components/Home/Home.jsx";
+import NewPost from "./Components/NewPost/NewPost.jsx";
 
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
             {
                 path: "/posts/:id",
                 element: <Blog />
+            }, 
+            {
+                path: "/addPost",
+                element: <NewPost />
             }
         ],
         errorElement: <ErrorPage />,

@@ -25,11 +25,22 @@ const usePosts = () => {
 };
 function App() {
   const { posts, error, loading } = usePosts();
-  const [loggedIn, setLoggedIn] = useState(false);
+
+  const [ loggedIn, setLoggedIn ] = useState(() => {
+    const savedLoggedIn = localStorage.getItem('loggedIn');
+    return savedLoggedIn ? JSON.parse(savedLoggedIn) : false;
+  })
+
+  
+
+  console.log('App.js loggedIn: ', loggedIn);
+  let authorId = null;
+
+  console.log(authorId);      
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
-  // console.log('loggedIn: ', loggedIn);
+  // console.log('loggedIn: ', loggedIn);  
   
   return (
     <>
@@ -47,6 +58,16 @@ function App() {
           {
             loggedIn ? (
               <>
+                <h2>Welcome</h2>
+                <span>
+                  <Link to="/addPost" className="link">
+                    New Post
+                  </Link>
+                </span>
+              </>
+            ) : (
+              
+              <>
                 <span>
                   <Link to="/signup" className="link">
                     Sign up
@@ -57,9 +78,8 @@ function App() {
                     Login
                   </Link>
                 </span>
+                
               </>
-            ) : (
-              <h2>Welcome</h2>
             )
           }
           
@@ -67,7 +87,7 @@ function App() {
       </nav>
 
       <div className="commonBackground">
-        <blogContext.Provider value={{posts, loggedIn, setLoggedIn}}>
+        <blogContext.Provider value={{posts, loggedIn, setLoggedIn, authorId}}>
           <Outlet />
         </blogContext.Provider>
       </div>

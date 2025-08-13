@@ -1,10 +1,19 @@
 import styles from './Login.module.css';
 import { blogContext } from '../../blogContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { setLoggedIn } = useContext(blogContext);
+    const { loggedIn, setLoggedIn } = useContext(blogContext);
+
+    useEffect(() => {
+        localStorage.setItem('loggedIn', JSON.stringify(loggedIn));
+    }, [loggedIn]);
+
+    function handleLogin() {
+        setLoggedIn(true);
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -31,7 +40,8 @@ const Login = () => {
         })
         .then(() => {
             console.log('user logged in successfully:');
-            setLoggedIn(true);
+            handleLogin();
+            console.log('loggedIn: ', loggedIn);
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -52,7 +62,7 @@ const Login = () => {
                     <input type="text" name="password" id="password"/>
                 </div>
 
-                <Link to='/'><button type="submit" className={styles.login}>Log in</button></Link>
+                <button type="submit" className={styles.login}>Log in</button>
             </form>
         </div>
     );

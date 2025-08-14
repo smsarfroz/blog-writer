@@ -1,9 +1,17 @@
 import styles from './Signup.module.css';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { blogContext } from '../../blogContext';
 
 const Signup = () => {
-    let { authorId } = useContext(blogContext);
+    const { authorId, setAuthorId } = useContext(blogContext);
+
+    useEffect(() => {
+        localStorage.setItem('authorId', JSON.stringify(authorId));
+    }, [authorId]);
+
+    function handleAuthorIdChange(id) {
+        setAuthorId(id);
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -31,7 +39,7 @@ const Signup = () => {
             return response.json();
         })
         .then((user) => {
-            authorId = user.id;
+            handleAuthorIdChange(user.id);
             console.log('user created successfully:');
         })
         .catch(error => {

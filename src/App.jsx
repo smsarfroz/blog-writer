@@ -31,10 +31,12 @@ function App() {
     return savedLoggedIn ? JSON.parse(savedLoggedIn) : false;
   })
 
-  
-
   console.log('App.js loggedIn: ', loggedIn);
-  let authorId = null;
+
+  const [ authorId, setAuthorId ] = useState(() => {
+    const savedAuthorId = localStorage.getItem('authorId');
+    return savedAuthorId ? JSON.parse(savedAuthorId) : 0;
+  })
 
   console.log(authorId);      
 
@@ -64,6 +66,12 @@ function App() {
                     New Post
                   </Link>
                 </span>
+
+                <span>
+                  <Link to="/signup" className="link">
+                    Log out
+                  </Link>
+                </span>
               </>
             ) : (
               
@@ -87,7 +95,7 @@ function App() {
       </nav>
 
       <div className="commonBackground">
-        <blogContext.Provider value={{posts, loggedIn, setLoggedIn, authorId}}>
+        <blogContext.Provider value={{posts, loggedIn, setLoggedIn, authorId, setAuthorId}}>
           <Outlet />
         </blogContext.Provider>
       </div>

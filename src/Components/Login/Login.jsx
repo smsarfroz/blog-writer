@@ -8,10 +8,12 @@ const Login = () => {
 
     useEffect(() => {
         localStorage.setItem('loggedIn', JSON.stringify(loggedIn));
+        
     }, [loggedIn]);
 
-    function handleLogin() {
+    function handleLogin(token) {
         setLoggedIn(true);
+        localStorage.setItem('token', JSON.stringify(token));
     }
 
     function handleSubmit(e) {
@@ -37,10 +39,12 @@ const Login = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            return response.json();
         })
-        .then(() => {
+        .then((response) => {
             console.log('user logged in successfully:');
-            handleLogin();
+            // console.log('response: ', response);
+            handleLogin(response.token);
             console.log('loggedIn: ', loggedIn);
         })
         .catch(error => {

@@ -21,6 +21,8 @@ const usePosts = () => {
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, []);
+
+  console.log('posts: ', posts);
   return { posts, error, loading };
 };
 function App() {

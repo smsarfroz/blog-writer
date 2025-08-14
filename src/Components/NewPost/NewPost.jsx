@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import { blogContext } from '../../blogContext';
 
 const NewPost = () => {
-    const { authorId, setAuthorId } = useContext(blogContext);
-    console.log(authorId);
+    const { authorId } = useContext(blogContext);
+    console.log('authorId: ', authorId);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -14,6 +14,7 @@ const NewPost = () => {
         formData.forEach((value, key) => {
             data[key] = value;
         });
+        console.log('data: ', data);
 
         fetch("http://localhost:3000/posts", {
             mode: 'cors',
@@ -27,8 +28,12 @@ const NewPost = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            console.log('1response: ', response);
+            console.log(typeof response);
+            return response.json();
         })
-        .then(() => {
+        .then((response) => {
+            console.log('response: ', response);
             console.log('post added successfully:');
         })
         .catch(error => {
@@ -53,7 +58,7 @@ const NewPost = () => {
                 <input type="checkbox" name='published'/>
             </div>
             
-            <input type="hidden" value={authorId}/>
+            <input type="hidden" value={authorId} name='authorId'/>
             <button type='submit' className={styles.submitButton}>Add Post</button>
 
         </form>

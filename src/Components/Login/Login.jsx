@@ -8,7 +8,11 @@ const Login = () => {
 
     useEffect(() => {
         localStorage.setItem('loggedIn', JSON.stringify(loggedIn));
-        
+
+        if (loggedIn === false) {
+            localStorage.removeItem('token');
+        }
+
     }, [loggedIn]);
 
     function handleLogin(token) {

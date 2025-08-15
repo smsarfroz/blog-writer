@@ -50,7 +50,8 @@ const NewPost = () => {
 
             <div>
                 <label htmlFor="content" id='content'>Content</label>
-                <input type="text" name='content'/>
+                {/* <input type="text" name='content'/> */}
+                <textarea name="content" id="content" className={styles.content}></textarea>
             </div>
 
             <div>

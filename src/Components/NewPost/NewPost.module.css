@@ -1,3 +1,6 @@
 .submitButton {
     cursor: pointer;
 }
+.content {
+    /* white-space: pre; */
+}

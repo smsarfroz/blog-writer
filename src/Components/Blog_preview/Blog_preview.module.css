@@ -1,3 +1,7 @@
+* {
+    border: 1px solid red;
+}
+
 .post {
     height: 10vw;
     width:auto;
@@ -24,8 +28,11 @@
 
 .postContent {
     height: 4.5vw;
+    width: auto;
     color: rgb(137, 138, 139);
-    margin-top: 0.4vw;
+    margin: 0.4vw;
+
+    overflow-wrap: break-word;
 }
 
 .postDetail {

@@ -62,7 +62,7 @@ function App() {
           {
             loggedIn ? (
               <>
-                <h2>Welcome</h2>
+                <h2>author~sarfroz</h2>
                 <span>
                   <Link to="/addPost" className="link">
                     New Post

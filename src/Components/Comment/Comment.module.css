@@ -8,3 +8,7 @@
     color: grey;
     font-size: 13px;
 }
+
+button {
+    cursor: pointer;
+}

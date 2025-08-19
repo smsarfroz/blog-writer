@@ -25,15 +25,15 @@ const useComments = () => {
         .catch((error) => setError(error))
         .finally(() => setLoading(false));
     }, []);
-    return {comments, error, loading};
+    return {comments, setComments, error, loading};
 };
 
 function Blog() {
     
     const receivedData = useLocation().state;
     const { post } = receivedData;
-    const {comments, error, loading} = useComments();
-    // console.log(comments, error, loading);
+    const {comments, setComments, error, loading} = useComments();
+    console.log('comments: ', comments);
     if (loading) {
         return <p>Loading...</p>;
     } else if (error) {
@@ -59,6 +59,7 @@ function Blog() {
                         return (
                             <Comment
                                 comment={comment}
+                                setComments={setComments}
                                 key={uuidv4()}
                             />
                         );

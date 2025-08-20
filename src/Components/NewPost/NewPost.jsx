@@ -4,7 +4,7 @@ import { blogContext } from '../../blogContext';
 
 const NewPost = () => {
     const { authorId } = useContext(blogContext);
-    console.log('authorId: ', authorId);
+    // console.log('authorId: ', authorId);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -14,9 +14,9 @@ const NewPost = () => {
         formData.forEach((value, key) => {
             data[key] = value;
         });
-        console.log('data: ', data);
+        // console.log('data: ', data);
 
-        fetch("http://localhost:3000/posts", {
+        fetch("http://blog-api-c5kc.onrender/posts", {
             mode: 'cors',
             method: "post",
             headers: {
@@ -28,12 +28,12 @@ const NewPost = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            console.log('1response: ', response);
-            console.log(typeof response);
+            // console.log('1response: ', response);
+            // console.log(typeof response);
             return response.json();
         })
-        .then((response) => {
-            console.log('response: ', response);
+        .then(() => {
+            // console.log('response: ', response);
             console.log('post added successfully:');
         })
         .catch(error => {

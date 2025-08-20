@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import { blogContext } from './blogContext.js';
+import 'dotenv/config';
 
 const usePosts = () => {
   const [posts, setPosts] = useState(null);
@@ -10,7 +11,7 @@ const usePosts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts", { mode: "cors" })
+    fetch("http://blog-api-c5kc.onrender/posts", { mode: "cors" })
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("server error");
@@ -22,7 +23,7 @@ const usePosts = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log('posts: ', posts);
+  // console.log('posts: ', posts);
   return { posts, error, loading };
 };
 function App() {
@@ -33,14 +34,14 @@ function App() {
     return savedLoggedIn ? JSON.parse(savedLoggedIn) : false;
   })
 
-  console.log('App.js loggedIn: ', loggedIn);
+  // console.log('App.js loggedIn: ', loggedIn);
 
   const [ authorId, setAuthorId ] = useState(() => {
     const savedAuthorId = localStorage.getItem('authorId');
     return savedAuthorId ? JSON.parse(savedAuthorId) : 0;
   })
 
-  console.log(authorId);      
+  // console.log(authorId);      
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;

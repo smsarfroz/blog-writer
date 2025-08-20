@@ -14,7 +14,7 @@ const useComments = () => {
     let postid = params.id;
     let id = parseInt(postid);
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${id}/comments`, { mode: "cors" })
+        fetch(`http://blog-api-c5kc.onrender/posts/${id}/comments`, { mode: "cors" })
         .then((response) => {
         if (response.status >= 400) {
             throw new Error("server error");
@@ -33,7 +33,7 @@ function Blog() {
     const receivedData = useLocation().state;
     const { post } = receivedData;
     const {comments, setComments, error, loading} = useComments();
-    console.log('comments: ', comments);
+    // console.log('comments: ', comments);
     if (loading) {
         return <p>Loading...</p>;
     } else if (error) {

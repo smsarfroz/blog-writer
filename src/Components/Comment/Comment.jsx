@@ -1,11 +1,10 @@
 import styles from './Comment.module.css';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useState } from 'react';
 
 function Comment({comment, setComments}) {
     
-    console.log('comment: ', comment);
+    // console.log('comment: ', comment);
     const [editmode, setEditmode] = useState(false);
     const [updatedVal, setUpdatedVal] = useState(comment.content);
     const postid = parseInt(useParams().id);
@@ -13,10 +12,10 @@ function Comment({comment, setComments}) {
         
         let data = {};
         data['newContent'] = updatedVal;
-        console.log('data: ', data);
-        fetch((`http://localhost:3000/posts/${postid}/comments/${cid}`), {
+        // console.log('data: ', data);
+        fetch((`http://blog-api-c5kc.onrender/posts/${postid}/comments/${cid}`), {
             mode: "cors",
-            method: "update",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -28,7 +27,7 @@ function Comment({comment, setComments}) {
             }
             return response.json();
         })
-        .then((response) => {
+        .then(() => {
             setComments((comments) => {
                 return comments.map(ct => {
                     if (ct.id == comment.id) {
@@ -37,7 +36,7 @@ function Comment({comment, setComments}) {
                     return ct;
                 })
             })
-            console.log('response: ', response);
+            // console.log('response: ', response);
             console.log('Comment updated successfully');
         })
         .catch (error => {
@@ -49,7 +48,7 @@ function Comment({comment, setComments}) {
     }
 
     function handleDelete(cid) {
-        fetch((`http://localhost:3000/posts/${postid}/comments/${cid}`), {
+        fetch((`http://blog-api-c5kc.onrender/posts/${postid}/comments/${cid}`), {
             mode: "cors",
             method: "delete",
             headers: {

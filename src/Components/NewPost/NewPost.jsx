@@ -16,7 +16,7 @@ const NewPost = () => {
         });
         // console.log('data: ', data);
 
-        fetch("http://blog-api-c5kc.onrender/posts", {
+        fetch("https://blog-api-c5kc.onrender/posts", {
             mode: 'cors',
             method: "post",
             headers: {

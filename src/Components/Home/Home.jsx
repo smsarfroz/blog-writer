@@ -11,7 +11,7 @@ const Home = () => {
     function UpdatePublishStatus(published, id) {
 
         let data = {published: published, id: id};
-        fetch(`https://blog-api-c5kc.onrender/posts/${id}`, { 
+        fetch(`https://blog-api-c5kc.onrender.com/posts/${id}`, { 
             mode: "cors",
             method: "post",
             headers: {

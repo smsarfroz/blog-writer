@@ -31,7 +31,7 @@ const Login = () => {
 
         // console.log(data);
 
-        fetch("https://blog-api-c5kc.onrender.com/login", {
+        fetch("/login", {
             mode: 'cors',
             method: "post",
             headers: {

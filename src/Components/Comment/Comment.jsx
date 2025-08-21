@@ -13,7 +13,7 @@ function Comment({comment, setComments}) {
         let data = {};
         data['newContent'] = updatedVal;
         // console.log('data: ', data);
-        fetch((`http://localhost:3000/posts/${postid}/comments/${cid}`), {
+        fetch((`/posts/${postid}/comments/${cid}`), {
             mode: "cors",
             method: "PUT",
             headers: {
@@ -48,7 +48,7 @@ function Comment({comment, setComments}) {
     }
 
     function handleDelete(cid) {
-        fetch((`http://localhost:3000/posts/${postid}/comments/${cid}`), {
+        fetch((`/posts/${postid}/comments/${cid}`), {
             mode: "cors",
             method: "delete",
             headers: {

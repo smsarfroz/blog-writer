@@ -24,7 +24,7 @@ const Signup = () => {
 
         // console.log(data);
 
-        fetch("https://blog-api-c5kc.onrender.com/signup", {
+        fetch("/signup", {
             mode: 'cors',
             method: "post",
             headers: {
